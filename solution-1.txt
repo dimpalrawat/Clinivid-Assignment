@@ -1,0 +1,30 @@
+When a user uploads image to the server, we have two ways to store the image.
+
+=> Store image in form of actual data byte in database in Binary Large Object(BLOB) field column of the database.
+
+=> Store the image in file system (Hard Disk Drive) and store the path in the database.
+
+Both the methods are used to store the images but incase of large volume of images second strategy is suitable.
+
+For each image of 100KB and 32MB RAM Server, if we store images in BLOB then to convert BLOB to Image and Image to BLOB the ram utilization will be very high. As well as database scalability is always as issue.
+
+So for Many Images and minimizing the utilization of RAM, we need to store image in our file system. For that we will save the relative path of file in the database with the id of the image.
+
+for eg:
+We will create the database table for storing image.
+
+ImageID			UserId			Image
+105				22				path-to-images/image1.jpg
+106				22				path-to-images/image2.jpg
+107				42				path-to-images/image3.jpg
+
+Where ImageID will be the primary key for the images table and UserId will be the foreign key. File system will be
+
+path-to-images-
+		-/image1.jpg
+		-/image1.jpg
+		-/image1.jpg
+
+Other Benefit of Storing Image in FileSystem is it allows webserver to control caching and thus makes the overall system more effective.
+
+The issue with File system storage is that integrity is not assured.

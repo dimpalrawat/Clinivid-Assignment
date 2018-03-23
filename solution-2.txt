@@ -1,0 +1,26 @@
+To store the Image in File System is better than storing it in database but to store millions of image in the file system and searching will be a inconvenient task. Thus for large number of images to reduce the search time for any file in a directory we can use an alternate method.
+
+Hashing Directories. 
+
+IF a name of image is same as user id then we can store images in sub directory
+
+ImageID				UserID				ImagePath
+100					223321123.jpg		path-to-base-directory/223/321/223321123.jpg
+101					223421123.jpg		path-to-base-directory/223/421/223421123.jpg
+103					243421123.jpg		path-to-base-directory/243/421/243421123.jpg
+
+
+Structure for directory will be
+
+path-to-base-directory-
+	-/223
+		-/321
+			-/223321123.jpg
+		-/421
+			-/223421123.jpg
+	-/243
+		-/421
+			-/243421123.jpg
+
+
+If all the images would have been in the single directory then time taken to search the file will be very much. In this way time complexity will be optimized as well as file system will not be sluggish. 
